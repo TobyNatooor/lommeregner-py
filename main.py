@@ -6,7 +6,7 @@ import lommeregnerClass
 LR = lommeregnerClass.Lommeregner()
 
 
-def Funktion_window():
+def funktion_window():
     # window code
     window = Tk()
     window.title("Funktioner")
@@ -27,8 +27,8 @@ def Funktion_window():
 
 
 start = Tk()
-start.title('Lommeregner')
-start.geometry("250x100")
-Button1 = tk.Button(start, text="Funktioner", command=Funktion_window).pack()
-Button2 = tk.Button(start, text="Lommeregner", command=LR.window).pack()
+start.title('Menu')
+start.geometry("250x120")
+Button1 = tk.Button(start, text="Funktioner", command=funktion_window, padx=28, pady=15).pack()
+Button2 = tk.Button(start, text="Lommeregner", command=LR.createWindow, padx=20, pady=15).pack()
 start.mainloop()
