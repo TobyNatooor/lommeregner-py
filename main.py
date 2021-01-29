@@ -16,8 +16,14 @@ def Funktion_window():
     x_list = []
     y_list = []
     ligning = ""
+    # udregning af funktion
+    x = 0
+    # while x <= 10:
+    # y_list.append(eval(ligning))
+    # x_list.appendlist
+
     # graf del.
-    plt.plot(x_list, y_list)
+    #plt.plot(x_list, y_list)
 
 
 start = Tk()
