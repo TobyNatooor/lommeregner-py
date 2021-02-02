@@ -10,7 +10,7 @@ def funktion_window():
     # window code
     window = Tk()
     window.title("Funktioner")
-    window.geometry("312x324")
+    window.geometry("312x324+600+300")
     window.resizable(0, 0)
     # main varibels
     x_list = []
@@ -28,7 +28,8 @@ def funktion_window():
 
 start = Tk()
 start.title('Menu')
-start.geometry("250x120")
-Button1 = tk.Button(start, text="Funktioner", command=funktion_window, padx=28, pady=15).pack()
-Button2 = tk.Button(start, text="Lommeregner", command=LR.createWindow, padx=20, pady=15).pack()
+start.resizable(0, 0)
+start.geometry("250x120+400+300")
+tk.Button(start, text="Lommeregner", command=LR.createWindow, padx=20, pady=15).pack()
+tk.Button(start, text="Funktioner", command=funktion_window, padx=28, pady=15).pack()
 start.mainloop()
