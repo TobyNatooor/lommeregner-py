@@ -3,54 +3,63 @@ import tkinter as tk
 
 class Lommeregner:
   def __init__(self):
-    self.LRString = ""
+    self.LRLabel = ""
     self.lastWasOperator = False
     self.numOfOperatorsInARow = 0
+    self.startParenthesis = 0
+    self.endParenthesis = 0
   
   def updateLabel(self):
     self.label.destroy()
-    self.label = tk.Label(self.window, text=self.LRString, relief=RAISED, padx=20, pady=5, width=350, font=("Helvetica", 16))
+    self.label = tk.Label(self.window, text=self.LRLabel, relief=RAISED, padx=20, pady=5, width=350, font=("Helvetica", 16))
     self.label.pack()
-    print("Label: " + self.LRString)
+    print("Label: " + self.LRLabel)
 
   def insertNum(self, insert):
-    self.LRString += str(insert)
+    self.LRLabel += str(insert)
     self.lastWasOperator = False
     self.numOfOperatorsInARow = 0
     self.updateLabel()
 
   def insertOperator(self, insert):
-    if self.LRString != "":
+    if self.LRLabel != "":
       if self.lastWasOperator and insert != "-":
         for i in range(self.numOfOperatorsInARow):
           self.deleteLastInsert()
         self.numOfOperatorsInARow = 0
-      self.LRString += str(insert)
+      self.LRLabel += str(insert)
       self.lastWasOperator = True
       self.numOfOperatorsInARow += 1
       self.updateLabel()
 
   def insertParenthesis(self, insert):
-    if self.LRString != "":
-      if insert == "(" and self.lastWasOperator:
-        self.LRString += str(insert)
-      if insert == ")" and not self.lastWasOperator:
-        self.LRString += str(insert)
-      self.updateLabel()
+    if insert == "(" and self.lastWasOperator or self.LRLabel == "" or self.LRLabel[-1] == "(":
+      self.startParenthesis += 1
+      self.LRLabel += str(insert)
+    elif insert == ")" and not self.lastWasOperator and not self.startParenthesis == self.endParenthesis:
+      self.endParenthesis += 1
+      self.LRLabel += str(insert)
+    self.updateLabel()
 
   def deleteLastInsert(self):
-    if self.LRString != "":
-      self.LRString = self.LRString[:-1]
+    if self.LRLabel != "":
+      self.LRLabel = self.LRLabel[:-1]
       self.updateLabel()
 
   def calculate(self):
     if self.lastWasOperator:
       print("Der mangler et tal til sidst")
+    elif not self.startParenthesis == self.endParenthesis:
+      print("En eller flere parenteser mangler at blive lukket")
     else:
-      result = eval(self.LRString)
+      result = eval(self.LRLabel)
       result = round(result, 2)
-      self.LRString = str(result)
+      self.LRLabel = str(result)
       self.updateLabel()
+
+  def clearLabel(self):
+    self.LRLabel = ""
+    self.updateLabel()
 
   def createWindow(self):
     self.window = Tk()
@@ -74,8 +83,8 @@ class Lommeregner:
     tk.Button(self.window, text="/", command=lambda: self.insertOperator("/"), width=6, height=3).place(x=185, y=160)
     tk.Button(self.window, text="(", command=lambda: self.insertParenthesis("("), width=2, height=3).place(x=245, y=40)
     tk.Button(self.window, text=")", command=lambda: self.insertParenthesis(")"), width=2, height=3).place(x=275, y=40)
-    tk.Button(self.window, text="Udregn", command=self.calculate, padx=20, pady=15).place(x=65, y=220)
-    tk.Button(self.window, text="Delete", command=self.deleteLastInsert, padx=20, pady=15).place(x=185, y=220)
-
+    tk.Button(self.window, text="Udregn", command=self.calculate, padx=20, pady=15).place(x=25, y=220)
+    tk.Button(self.window, text="Delete", command=self.deleteLastInsert, padx=20, pady=15).place(x=115, y=220)
+    tk.Button(self.window, text="Clear", command=self.clearLabel, padx=20, pady=15).place(x=205, y=220)
     self.label = tk.Label(self.window, text="", relief=RAISED, pady=5, width=350, font=("Helvetica", 16))
     self.label.pack()
