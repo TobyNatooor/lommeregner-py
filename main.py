@@ -4,7 +4,7 @@ from tkinter import *
 import numpy as np
 import lommeregnerClass
 
-def funktion_window():
+def function_window():
     # window code
     window = Tk()
     window.title("Funktioner")
@@ -54,5 +54,5 @@ start.title('Menu')
 start.geometry("250x120+400+300")
 start.resizable(0, 0)
 tk.Button(start, text="Lommeregner", command=LR_window, padx=20, pady=15).pack()
-tk.Button(start, text="Funktioner", command=funktion_window, padx=28, pady=15).pack()
+tk.Button(start, text="Funktioner", command=function_window, padx=28, pady=15).pack()
 start.mainloop()
