@@ -1,29 +1,28 @@
 class Class():
-  num1, num2, num3 = "", "", ""
-  power = ""
-
   def __init__(self, theFunction):
-    led = 0
     self.op1, self.op2, self.op3 = "", "", ""
-
+    self.num1, self.num2, self.num3 = "", "", ""
+    self.power = ""
+    self.part = 0
+    
     if not theFunction[0] == "-":
       theFunction = "+" + theFunction
 
     for i in theFunction:
         if i == "+" or i == "-":
-          led += 1
-          if led == 1:
+          self.part += 1
+          if self.part == 1:
             self.op1 = i
-          if led == 2:
+          if self.part == 2:
             self.op2 = i
-          if led == 3:
+          if self.part == 3:
             self.op3 = i
         else:
-          if led == 1:
+          if self.part == 1:
             self.num1 += i
-          if led == 2:
+          if self.part == 2:
             self.num2 += i
-          if led == 3:
+          if self.part == 3:
             self.num3 += i
 
     if "*x" in self.num2:
