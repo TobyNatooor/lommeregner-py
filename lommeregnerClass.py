@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 
+#Vi har valgt at lave lommeregneren som en class
 class Lommeregner:
   def __init__(self):
     self.LRLabel = ""
@@ -9,19 +10,22 @@ class Lommeregner:
     self.startParenthesis = 0
     self.endParenthesis = 0
     self.window = 0
-  
+
+  #Vi opdatere labelet når vi trykker på en knap  
   def updateLabel(self):
     self.label.destroy()
     self.label = tk.Label(self.window, text=self.LRLabel, relief=RAISED, padx=20, pady=5, width=350, font=("Helvetica", 16))
     self.label.pack()
     print("Label: " + self.LRLabel)
 
+  #Vi insætter tal til labelet
   def insertNum(self, insert):
     self.LRLabel += str(insert)
     self.lastWasOperator = False
     self.numOfOperatorsInARow = 0
     self.updateLabel()
 
+  #Vi insætter tegn til labelet
   def insertOperator(self, insert):
     if self.LRLabel != "":
       if self.lastWasOperator and insert != "-":
@@ -33,6 +37,7 @@ class Lommeregner:
       self.numOfOperatorsInARow += 1
       self.updateLabel()
 
+  #Vi insætter parenteser til labelet
   def insertParenthesis(self, insert):
     if insert == "(" and self.lastWasOperator or self.LRLabel == "" or self.LRLabel[-1] == "(":
       self.startParenthesis += 1
@@ -42,11 +47,13 @@ class Lommeregner:
       self.LRLabel += str(insert)
     self.updateLabel()
 
+  #Vi laver defination til slet knap
   def deleteLastInsert(self):
     if self.LRLabel != "":
       self.LRLabel = self.LRLabel[:-1]
       self.updateLabel()
 
+  #Vi lavber defination til Udregn knappen
   def calculate(self):
     if self.lastWasOperator:
       print("Der mangler et tal til sidst")
@@ -58,16 +65,19 @@ class Lommeregner:
       self.LRLabel = str(result)
       self.updateLabel()
 
+  #Vi laver definationen til clear knappen
   def clearLabel(self):
     self.LRLabel = ""
     self.updateLabel()
 
+  #Vi laver det tkinter vindu vi arbejder i
   def createWindow(self):
     self.window = Tk()
     self.window.title("Lommeregner")
     self.window.geometry("305x280+900+300")
     self.window.resizable(0, 0)
 
+    #Vi laver alle knapperne til tal og tegn
     tk.Button(self.window, text="1", command=lambda: self.insertNum("1"), width=6, height=3).place(x=5, y=40)
     tk.Button(self.window, text="2", command=lambda: self.insertNum("2"), width=6, height=3).place(x=65, y=40)
     tk.Button(self.window, text="3", command=lambda: self.insertNum("3"), width=6, height=3).place(x=125, y=40)
@@ -87,5 +97,7 @@ class Lommeregner:
     tk.Button(self.window, text="Udregn", command=self.calculate, padx=20, pady=15).place(x=25, y=220)
     tk.Button(self.window, text="Delete", command=self.deleteLastInsert, padx=20, pady=15).place(x=115, y=220)
     tk.Button(self.window, text="Clear", command=self.clearLabel, padx=20, pady=15).place(x=205, y=220)
+
+    #Vi laver et label hvor vi kan se hvilken knapper vi trykker på
     self.label = tk.Label(self.window, text="", relief=RAISED, pady=5, width=350, font=("Helvetica", 16))
     self.label.pack()
