@@ -1,33 +1,34 @@
 import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import *
-import numpy as np
 from lommeregnerClass import Lommeregner
-from splitStringFunction import SplitStringFunction
 
 def function_window():
     # window code
     window = Tk()
     window.title("Funktioner")
-    window.geometry("312x324+600+300")
+    window.geometry("340x180+600+300")
     window.resizable(0, 0)
 
-    functionInput = tk.Entry(window)
-    functionInput.pack()
+    tk.Label(window, text="Indsæt a, b og c værdierne af din funktion", font=("Helvetica", 12)).pack()
+    tk.Label(window, text="a", width=10, relief=RAISED).place(x=55, y=35)
+    aInput = tk.Entry(window, width=12)
+    aInput.place(x=55, y=60)
+    tk.Label(window, text="b", width=10, relief=RAISED).place(x=135, y=35)
+    bInput = tk.Entry(window, width=12)
+    bInput.place(x=135, y=60)
+    tk.Label(window, text="c", width=10, relief=RAISED).place(x=215, y=35)
+    cInput = tk.Entry(window, width=12)
+    cInput.place(x=215, y=60)
     
     def makeGraph():
-      theFunction = functionInput.get()
-      fcn = SplitStringFunction(theFunction)
+      a = aInput.get()
+      b = bInput.get()
+      c = cInput.get()
+      print(f"a: {a}  b: {b}  c: {c}")
 
-      x = np.linspace(-20, 20, 100)
-      y = fcn.num1*x**fcn.power + fcn.num2*x + fcn.num3
-      plt.plot(x, y, 'r')
-      plt.show()    
-
-    tk.Button(window, text="Lav graf", command=makeGraph).pack()
+    tk.Button(window, text="Lav graf", command=makeGraph, padx=15).place(x=140, y=90)
     window.mainloop()
-
-
 
     # main varibels
     x_list = []
@@ -41,6 +42,7 @@ def function_window():
 
     # graf del.
     #plt.plot(x_list, y_list) 
+
 
 
 LR_window = lambda: Lommeregner().createWindow()
