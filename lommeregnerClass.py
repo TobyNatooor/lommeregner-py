@@ -8,6 +8,7 @@ class Lommeregner:
     self.numOfOperatorsInARow = 0
     self.startParenthesis = 0
     self.endParenthesis = 0
+    self.window = 0
   
   def updateLabel(self):
     self.label.destroy()
@@ -19,7 +20,8 @@ class Lommeregner:
     self.LRLabel += str(insert)
     self.lastWasOperator = False
     self.numOfOperatorsInARow = 0
-    self.updateLabel()
+    if self.window:
+      self.updateLabel()
 
   def insertOperator(self, insert):
     if self.LRLabel != "":
@@ -30,7 +32,8 @@ class Lommeregner:
       self.LRLabel += str(insert)
       self.lastWasOperator = True
       self.numOfOperatorsInARow += 1
-      self.updateLabel()
+      if self.window:
+        self.updateLabel()
 
   def insertParenthesis(self, insert):
     if insert == "(" and self.lastWasOperator or self.LRLabel == "" or self.LRLabel[-1] == "(":
@@ -55,7 +58,8 @@ class Lommeregner:
       result = eval(self.LRLabel)
       result = round(result, 2)
       self.LRLabel = str(result)
-      self.updateLabel()
+      if self.window:
+        self.updateLabel()
 
   def clearLabel(self):
     self.LRLabel = ""

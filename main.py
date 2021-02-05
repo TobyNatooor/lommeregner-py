@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import tkinter as tk
 from tkinter import *
 import numpy as np
-import lommeregnerClass
+from lommeregnerClass import Lommeregner
+from splitStringFunction import SplitStringFunction
 
 def function_window():
     # window code
@@ -16,17 +17,12 @@ def function_window():
     
     def makeGraph():
       theFunction = functionInput.get()
-      print(theFunction)
+      fcn = SplitStringFunction(theFunction)
 
-      if "^" in theFunction:
-        print("dette er en andengradsfunktion")
-        theFunction.replace("^", "**")
-
-        x = np.linspace(-5, 5, 100)
-        y = theFunction
-        fig = plt.figure()
-        plt.plot(x, y, 'r')
-        plt.show()
+      x = np.linspace(-20, 20, 100)
+      y = fcn.num1*x**fcn.power + fcn.num2*x + fcn.num3
+      plt.plot(x, y, 'r')
+      plt.show()    
 
     tk.Button(window, text="Lav graf", command=makeGraph).pack()
     window.mainloop()
@@ -47,7 +43,7 @@ def function_window():
     #plt.plot(x_list, y_list) 
 
 
-LR_window = lambda: lommeregnerClass.Lommeregner().createWindow()
+LR_window = lambda: Lommeregner().createWindow()
 
 start = Tk()
 start.title('Menu')
