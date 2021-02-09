@@ -1,6 +1,6 @@
-a = float(input("Hvad er a: "))
-b = float(input("Hvad er b: "))
-c = float(input("Hvad er c: "))
+a = 1#float(input("Hvad er a: "))
+b = 2#float(input("Hvad er b: "))
+c = 3#float(input("Hvad er c: "))
 
 d = float(b*b) - (4*a*c)
 print("d = ", d)

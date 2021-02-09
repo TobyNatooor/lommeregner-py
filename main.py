@@ -1,14 +1,13 @@
-import tkinter as tk
+# vi har valgt at lave vores projekt med et UI biblotek 
 from tkinter import *
 from lommeregnerClass import Lommeregner
 from makeGraph import Funktion_window
 
-LR_window = lambda: Lommeregner().createWindow()
-
-start = Tk()
-start.title('Menu')
-start.geometry("250x120+400+300")
-start.resizable(0, 0)
-tk.Button(start, text="Lommeregner", command=LR_window, padx=20, pady=15).pack()
-tk.Button(start, text="Funktioner", command=Funktion_window, padx=28, pady=15).pack()
-start.mainloop()
+# Laver start vinduet
+window = Tk()
+window.title('Menu')
+window.geometry("250x120+400+300")
+window.resizable(0, 0)
+Button(window, text="Lommeregner", command=Lommeregner().createWindow, padx=20, pady=15).pack()
+Button(window, text="Funktioner", command=Funktion_window, padx=28, pady=15).pack()
+window.mainloop()
