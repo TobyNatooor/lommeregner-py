@@ -3,12 +3,12 @@ from tkinter import *
 #Vi har valgt at lave lommeregneren med en class
 class Lommeregner:
   def __init__(self):
-    self.display = ""
-    self.lastWasOperator = False
-    self.numOfOperatorsInARow = 0
-    self.startParenthesis = 0
-    self.endParenthesis = 0
-    self.window = 0
+    self.display = "" # Variablet der viser udreginingen
+    self.lastWasOperator = False # 
+    self.numOfOperatorsInARow = 0 
+    self.startParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
+    self.endParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
+
 
   #Funktionen updatere stringen display  
   def updateLabel(self):
@@ -75,6 +75,7 @@ class Lommeregner:
     self.window.title("Lommeregner")
     self.window.geometry("305x280+900+300")
     self.window.resizable(0, 0)
+    
     #Label der viser string display
     self.label = Label(self.window, text=self.display, relief=RAISED, pady=5, width=350, font=("Helvetica", 16))
     self.label.pack()

@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 from tkinter import *
 
+
 def Funktion_window():
-
-
     # graph
     def makeGraph():
       # variabel
@@ -30,11 +29,11 @@ def Funktion_window():
       topx = round((-b / (2*a)), 3)
       topy = round((-d / (4*a)), 3)
 
-      displayTalString = f"diskriminant:{d}\n  x1:{ls1}    x2:{ls2}\n toppunkt:({topx},{topy})"
-      Label(window, text=displayTalString, relief=RAISED, padx=130).place(x=-10, y=120)
+      displayTalString = f"diskriminant: {d}\n  x1: {ls1}    x2: {ls2}\n toppunkt: ({topx},{topy})"
+      Label(window, text=displayTalString, relief=RAISED, padx=130, font=("Helvetica", 12)).pack(side=BOTTOM)
       
       #style
-      plt.grid(color='black', linestyle='-', linewidth=0.3)
+      plt.grid(color='black', linestyle='-', linewidth=0.3) 
       plt.axhline(y=0, color="black")
       plt.axvline(x=0, color="black")
       plt.locator_params(axis='y', nbins=20)
@@ -56,7 +55,6 @@ def Funktion_window():
     Label(window, text="c", width=10, relief=RAISED).place(x=215, y=35)
     cInput = Entry(window, width=12)
     cInput.place(x=215, y=60)
-
     Button(window, text="Lav graf", command=makeGraph, padx=15).place(x=140, y=90)
-    
     window.mainloop()
+    
