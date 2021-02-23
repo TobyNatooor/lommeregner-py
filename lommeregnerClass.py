@@ -1,3 +1,4 @@
+
 from tkinter import *
 
 #Vi har valgt at lave lommeregneren med en class
@@ -5,10 +6,9 @@ class Lommeregner:
   def __init__(self):
     self.display = "" # Variablet der viser udreginingen
     self.lastWasOperator = False # 
-    self.numOfOperatorsInARow = 0 
+    self.numOfOpsInARow = 0 
     self.startParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
     self.endParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
-
 
   #Funktionen updatere stringen display  
   def updateLabel(self):
@@ -21,19 +21,19 @@ class Lommeregner:
   def insertNum(self, insert):
     self.display += str(insert)
     self.lastWasOperator = False
-    self.numOfOperatorsInARow = 0
+    self.numOfOpsInARow = 0
     self.updateLabel()
 
   #Insætter +, -, * eller / til display
   def insertOperator(self, insert):
     if self.display != "":
       if self.lastWasOperator and insert != "-":
-        for i in range(self.numOfOperatorsInARow):
+        for i in range(self.numOfOpsInARow):
           self.deleteLastInsert()
-        self.numOfOperatorsInARow = 0
+        self.numOfOpsInARow = 0
       self.display += str(insert)
       self.lastWasOperator = True
-      self.numOfOperatorsInARow += 1
+      self.numOfOpsInARow += 1
       self.updateLabel()
 
   #Insætter parenteser til display

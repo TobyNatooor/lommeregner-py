@@ -1,11 +1,15 @@
+
 import matplotlib.pyplot as plt
 from tkinter import *
 
+windowY = 150
 
 def Funktion_window():
     # graph
+
     def makeGraph():
       # variabel
+      global windowY
       limit = 40
       x = -40
       a = float(aInput.get())
@@ -19,7 +23,7 @@ def Funktion_window():
       while x <= limit:
           y_list.append(eval("a*(x*x)+x*b+c"))
           x_list.append(x)
-          x = x + 0.25
+          x = x + 0.1
       plt.plot(x_list, y_list)
 
       #udregning af tal (d, toppunkt og x skæringspunkter)
@@ -29,8 +33,10 @@ def Funktion_window():
       topx = round((-b / (2*a)), 3)
       topy = round((-d / (4*a)), 3)
 
+      windowY += 60
       displayTalString = f"diskriminant: {d}\n  x1: {ls1}    x2: {ls2}\n toppunkt: ({topx},{topy})"
       Label(window, text=displayTalString, relief=RAISED, padx=130, font=("Helvetica", 12)).pack(side=BOTTOM)
+      window.geometry("340x" + str(windowY))
       
       #style
       plt.grid(color='black', linestyle='-', linewidth=0.3) 
@@ -43,7 +49,7 @@ def Funktion_window():
     #Laver vinduet og UI
     window = Tk()
     window.title("Funktioner")
-    window.geometry("340x200")
+    window.geometry("340x" + str(windowY))
     window.resizable(0, 0)
     Label(window, text="Indsæt a, b og c værdierne af din funktion", font=("Helvetica", 12)).pack()
     Label(window, text="a", width=10, relief=RAISED).place(x=55, y=35)
