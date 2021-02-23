@@ -5,7 +5,7 @@ from tkinter import *
 class Lommeregner:
   def __init__(self):
     self.display = "" # Variablet der viser udreginingen
-    self.lastWasOperator = False # 
+    self.lastWasOperator = False
     self.numOfOpsInARow = 0 
     self.startParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
     self.endParenthesis = 0 # varibel til at tjekke om der er både start og slut parenthesis.
