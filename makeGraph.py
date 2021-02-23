@@ -28,8 +28,10 @@ def Funktion_window():
 
       #udregning af tal (d, toppunkt og x skæringspunkter)
       d = round(((b*b) - (4*a*c)), 3)
-      ls1 = round(((-b + (d**0.5).real) / (2 * a)), 3)
-      ls2 = round(((-b - (d**0.5).real) / (2 * a)) ,3)
+      if d >= 0: ls1 = round(((-b + (d**0.5).real) / (2 * a)), 3)
+      else: ls1 = "---"
+      if d > 0: ls2 = round(((-b - (d**0.5).real) / (2 * a)) ,3)
+      else: ls2 = "---"
       topx = round((-b / (2*a)), 3)
       topy = round((-d / (4*a)), 3)
 
